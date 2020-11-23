@@ -133,6 +133,7 @@ open class FPNTextField: UITextField {
 	private func setupLeftView() {
 		leftView = UIView()
 		leftViewMode = .always
+        leftView?.backgroundColor = .red
 		if #available(iOS 9.0, *) {
 			phoneCodeTextField.semanticContentAttribute = .forceLeftToRight
 		} else {
