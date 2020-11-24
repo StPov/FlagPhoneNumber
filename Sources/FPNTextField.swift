@@ -17,12 +17,12 @@ open class FPNTextField: UITextField {
 		}
 	}
 
-	private var flagWidthConstraint: NSLayoutConstraint?
-	private var flagHeightConstraint: NSLayoutConstraint?
+//	private var flagWidthConstraint: NSLayoutConstraint?
+//	private var flagHeightConstraint: NSLayoutConstraint?
 
 	/// The size of the leftView
 	private var leftViewSize: CGSize {
-		let width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!)
+		let width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!) + 20
 		let height = bounds.height
 
 		return CGSize(width: width, height: height)
@@ -133,7 +133,6 @@ open class FPNTextField: UITextField {
 	private func setupLeftView() {
 		leftView = UIView()
 		leftViewMode = .always
-        leftView?.backgroundColor = .red
 		if #available(iOS 9.0, *) {
 			phoneCodeTextField.semanticContentAttribute = .forceLeftToRight
 		} else {
@@ -143,26 +142,44 @@ open class FPNTextField: UITextField {
 		leftView?.addSubview(flagButton)
 		leftView?.addSubview(phoneCodeTextField)
 
-		flagWidthConstraint = NSLayoutConstraint(item: flagButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: flagButtonSize.width)
-		flagHeightConstraint = NSLayoutConstraint(item: flagButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: flagButtonSize.height)
+        flagButton.translatesAutoresizingMaskIntoConstraints = false
+//		flagWidthConstraint = NSLayoutConstraint(item: flagButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: flagButtonSize.width)
+        if #available(iOS 9.0, *) {
+            flagButton.widthAnchor.constraint(equalToConstant: flagButtonSize.width).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
+//		flagHeightConstraint = NSLayoutConstraint(item: flagButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: flagButtonSize.height)
+        if #available(iOS 9.0, *) {
+            flagButton.heightAnchor.constraint(equalToConstant: flagButtonSize.height).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
 
-		flagWidthConstraint?.isActive = true
-		flagHeightConstraint?.isActive = true
+//		flagWidthConstraint?.isActive = true
+//		flagHeightConstraint?.isActive = true
 
-		NSLayoutConstraint(item: flagButton, attribute: .centerY, relatedBy: .equal, toItem: leftView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
-
-		NSLayoutConstraint(item: flagButton, attribute: .leading, relatedBy: .equal, toItem: leftView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
-		NSLayoutConstraint(item: phoneCodeTextField, attribute: .leading, relatedBy: .equal, toItem: flagButton, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
-		NSLayoutConstraint(item: phoneCodeTextField, attribute: .trailing, relatedBy: .equal, toItem: leftView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
-		NSLayoutConstraint(item: phoneCodeTextField, attribute: .top, relatedBy: .equal, toItem: leftView, attribute: .top, multiplier: 1, constant: 0).isActive = true
-		NSLayoutConstraint(item: phoneCodeTextField, attribute: .bottom, relatedBy: .equal, toItem: leftView, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
+//		NSLayoutConstraint(item: flagButton, attribute: .centerY, relatedBy: .equal, toItem: leftView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
+        if #available(iOS 9.0, *) {
+            flagButton.centerYAnchor.constraint(equalTo: leftView!.centerYAnchor).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
+//		NSLayoutConstraint(item: flagButton, attribute: .leading, relatedBy: .equal, toItem: leftView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
+        if #available(iOS 9.0, *) {
+            flagButton.leadingAnchor.constraint(equalTo: leftView!.leadingAnchor).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
+        
+//		NSLayoutConstraint(item: phoneCodeTextField, attribute: .leading, relatedBy: .equal, toItem: flagButton, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
+//		NSLayoutConstraint(item: phoneCodeTextField, attribute: .trailing, relatedBy: .equal, toItem: leftView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
+//		NSLayoutConstraint(item: phoneCodeTextField, attribute: .top, relatedBy: .equal, toItem: leftView, attribute: .top, multiplier: 1, constant: 0).isActive = true
+//		NSLayoutConstraint(item: phoneCodeTextField, attribute: .bottom, relatedBy: .equal, toItem: leftView, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
 	}
 
 	open override func updateConstraints() {
 		super.updateConstraints()
-
-		flagWidthConstraint?.constant = flagButtonSize.width
-		flagHeightConstraint?.constant = flagButtonSize.height
 	}
 
 	open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
