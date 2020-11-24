@@ -416,17 +416,16 @@ open class FPNTextField: UITextField {
 
 				cleanedPhoneNumber = "+\(validPhoneNumber.countryCode.stringValue)\(validPhoneNumber.nationalNumber.stringValue)"
 
-                text = cleanedPhoneNumber
-//				if let inputString = formatter?.inputString(cleanedPhoneNumber) {
-//					text = remove(dialCode: phoneCode, in: inputString)
-//				}
-//				(delegate as? FPNTextFieldDelegate)?.fpnDidValidatePhoneNumber(textField: self, isValid: true)
+				if let inputString = formatter?.inputString(cleanedPhoneNumber) {
+                    text = remove(dialCode: phoneCode, in: inputString).trimmingCharacters(in: .whitespacesAndNewlines)
+				}
+				(delegate as? FPNTextFieldDelegate)?.fpnDidValidatePhoneNumber(textField: self, isValid: true)
 			} else {
 				nbPhoneNumber = nil
 
 				if let dialCode = selectedCountry?.phoneCode {
 					if let inputString = formatter?.inputString(cleanedPhoneNumber) {
-						text = remove(dialCode: dialCode, in: inputString)
+                        text = remove(dialCode: dialCode, in: inputString).trimmingCharacters(in: .whitespacesAndNewlines)
 					}
 				}
 				(delegate as? FPNTextFieldDelegate)?.fpnDidValidatePhoneNumber(textField: self, isValid: false)
