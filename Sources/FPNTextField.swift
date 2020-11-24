@@ -10,13 +10,13 @@ import UIKit
 
 open class FPNTextField: UITextField {
     
-    var initialValue: String? {
+    open var initialValue: String? {
         didSet {
             text = initialValue
         }
     }
     
-    var isInitialValueChanged: Bool {
+    open var isInitialValueChanged: Bool {
         return text != initialValue
     }
 
