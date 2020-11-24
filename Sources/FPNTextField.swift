@@ -143,6 +143,8 @@ open class FPNTextField: UITextField {
 		leftView = UIView()
 		leftViewMode = .always
         leftView?.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(displayCountries))
+        leftView?.addGestureRecognizer(tap)
 		if #available(iOS 9.0, *) {
 			phoneCodeTextField.semanticContentAttribute = .forceLeftToRight
 		} else {
