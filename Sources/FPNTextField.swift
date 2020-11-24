@@ -447,9 +447,9 @@ open class FPNTextField: UITextField {
 	}
 
 	private func updateUI() {
-		if let countryCode = selectedCountry?.code {
-			formatter = NBAsYouTypeFormatter(regionCode: countryCode.rawValue)
-		}
+//		if let countryCode = selectedCountry?.code {
+//			formatter = NBAsYouTypeFormatter(regionCode: countryCode.rawValue)
+//		}
 
 		flagButton.setImage(selectedCountry?.flag, for: .normal)
 
