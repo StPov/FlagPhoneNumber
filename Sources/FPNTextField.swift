@@ -141,7 +141,6 @@ open class FPNTextField: UITextField {
 
 		leftView?.addSubview(flagButton)
         leftView?.addSubview(arrowImageView)
-        arrowImageView.backgroundColor = .red
 		leftView?.addSubview(phoneCodeTextField)
         leftView?.addSubview(separatorView)
         separatorView.backgroundColor = .lightGray
@@ -176,17 +175,17 @@ open class FPNTextField: UITextField {
             // Fallback on earlier versions
         }
         if #available(iOS 9.0, *) {
-            arrowImageView.topAnchor.constraint(equalTo: flagButton.topAnchor).isActive = true
+            arrowImageView.topAnchor.constraint(equalTo: flagButton.topAnchor, constant: 5).isActive = true
         } else {
             // Fallback on earlier versions
         }
         if #available(iOS 9.0, *) {
-            arrowImageView.bottomAnchor.constraint(equalTo: flagButton.bottomAnchor).isActive = true
+            arrowImageView.bottomAnchor.constraint(equalTo: flagButton.bottomAnchor, constant: 5).isActive = true
         } else {
             // Fallback on earlier versions
         }
         if #available(iOS 9.0, *) {
-            arrowImageView.widthAnchor.constraint(equalToConstant: 6).isActive = true
+            arrowImageView.widthAnchor.constraint(equalToConstant: 10).isActive = true
         } else {
             // Fallback on earlier versions
         }
