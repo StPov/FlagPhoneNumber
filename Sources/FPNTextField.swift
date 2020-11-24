@@ -17,9 +17,6 @@ open class FPNTextField: UITextField {
 		}
 	}
 
-//	private var flagWidthConstraint: NSLayoutConstraint?
-//	private var flagHeightConstraint: NSLayoutConstraint?
-
 	/// The size of the leftView
 	private var leftViewSize: CGSize {
 		let width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!) + 20
@@ -35,6 +32,8 @@ open class FPNTextField: UITextField {
 	private var formatter: NBAsYouTypeFormatter?
 
 	open var flagButton: UIButton = UIButton()
+    open var arrowImageView: UIImageView = UIImageView()
+    open var separatorView: UIView = UIView()
 
 	open override var font: UIFont? {
 		didSet {
@@ -140,34 +139,88 @@ open class FPNTextField: UITextField {
 		}
 
 		leftView?.addSubview(flagButton)
+        leftView?.addSubview(arrowImageView)
+        arrowImageView.backgroundColor = .red
 		leftView?.addSubview(phoneCodeTextField)
+        phoneCodeTextField.backgroundColor = .yellow
+        leftView?.addSubview(separatorView)
+        separatorView.backgroundColor = .blue
 
         flagButton.translatesAutoresizingMaskIntoConstraints = false
-//		flagWidthConstraint = NSLayoutConstraint(item: flagButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: flagButtonSize.width)
         if #available(iOS 9.0, *) {
             flagButton.widthAnchor.constraint(equalToConstant: flagButtonSize.width).isActive = true
         } else {
             // Fallback on earlier versions
         }
-//		flagHeightConstraint = NSLayoutConstraint(item: flagButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: flagButtonSize.height)
         if #available(iOS 9.0, *) {
             flagButton.heightAnchor.constraint(equalToConstant: flagButtonSize.height).isActive = true
         } else {
             // Fallback on earlier versions
         }
 
-//		flagWidthConstraint?.isActive = true
-//		flagHeightConstraint?.isActive = true
-
-//		NSLayoutConstraint(item: flagButton, attribute: .centerY, relatedBy: .equal, toItem: leftView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
         if #available(iOS 9.0, *) {
             flagButton.centerYAnchor.constraint(equalTo: leftView!.centerYAnchor).isActive = true
         } else {
             // Fallback on earlier versions
         }
-//		NSLayoutConstraint(item: flagButton, attribute: .leading, relatedBy: .equal, toItem: leftView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
         if #available(iOS 9.0, *) {
             flagButton.leadingAnchor.constraint(equalTo: leftView!.leadingAnchor).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        arrowImageView.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 9.0, *) {
+            arrowImageView.leadingAnchor.constraint(equalTo: flagButton.trailingAnchor).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
+        if #available(iOS 9.0, *) {
+            arrowImageView.topAnchor.constraint(equalTo: leftView!.topAnchor, constant: 5).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
+        if #available(iOS 9.0, *) {
+            arrowImageView.bottomAnchor.constraint(equalTo: leftView!.bottomAnchor, constant: 5).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
+        if #available(iOS 9.0, *) {
+            arrowImageView.widthAnchor.constraint(equalToConstant: 6).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        phoneCodeTextField.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 9.0, *) {
+            phoneCodeTextField.leadingAnchor.constraint(equalTo: arrowImageView.trailingAnchor, constant: 2).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
+        if #available(iOS 9.0, *) {
+            phoneCodeTextField.centerYAnchor.constraint(equalTo: leftView!.centerYAnchor).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 9.0, *) {
+            separatorView.leadingAnchor.constraint(equalTo: phoneCodeTextField.trailingAnchor).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
+        if #available(iOS 9.0, *) {
+            separatorView.topAnchor.constraint(equalTo: leftView!.topAnchor).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
+        if #available(iOS 9.0, *) {
+            separatorView.bottomAnchor.constraint(equalTo: leftView!.bottomAnchor).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
+        if #available(iOS 9.0, *) {
+            separatorView.widthAnchor.constraint(equalToConstant: 1).isActive = true
         } else {
             // Fallback on earlier versions
         }
