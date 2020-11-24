@@ -29,7 +29,7 @@ open class FPNTextField: UITextField {
 
 	/// The size of the leftView
 	private var leftViewSize: CGSize {
-		let width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!) + 10
+		let width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!) + 13
 		let height = bounds.height
 
 		return CGSize(width: width, height: height)
