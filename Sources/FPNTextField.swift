@@ -9,6 +9,16 @@
 import UIKit
 
 open class FPNTextField: UITextField {
+    
+    var initialValue: String? {
+        didSet {
+            text = initialValue
+        }
+    }
+    
+    var isInitialValueChanged: Bool {
+        return text != initialValue
+    }
 
 	/// The size of the flag button
 	@objc open var flagButtonSize: CGSize = CGSize(width: 32, height: 32) {
@@ -19,7 +29,7 @@ open class FPNTextField: UITextField {
 
 	/// The size of the leftView
 	private var leftViewSize: CGSize {
-		let width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!) + 20
+		let width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!) + 10
 		let height = bounds.height
 
 		return CGSize(width: width, height: height)
@@ -180,7 +190,7 @@ open class FPNTextField: UITextField {
             // Fallback on earlier versions
         }
         if #available(iOS 9.0, *) {
-            arrowImageView.bottomAnchor.constraint(equalTo: flagButton.bottomAnchor, constant: 5).isActive = true
+            arrowImageView.bottomAnchor.constraint(equalTo: flagButton.bottomAnchor, constant: -5).isActive = true
         } else {
             // Fallback on earlier versions
         }
