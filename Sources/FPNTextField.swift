@@ -185,12 +185,12 @@ open class FPNTextField: UITextField {
             // Fallback on earlier versions
         }
         if #available(iOS 9.0, *) {
-            arrowImageView.topAnchor.constraint(equalTo: flagButton.topAnchor, constant: 5).isActive = true
+            arrowImageView.topAnchor.constraint(equalTo: flagButton.topAnchor, constant: 6).isActive = true
         } else {
             // Fallback on earlier versions
         }
         if #available(iOS 9.0, *) {
-            arrowImageView.bottomAnchor.constraint(equalTo: flagButton.bottomAnchor, constant: -5).isActive = true
+            arrowImageView.bottomAnchor.constraint(equalTo: flagButton.bottomAnchor, constant: -6).isActive = true
         } else {
             // Fallback on earlier versions
         }
