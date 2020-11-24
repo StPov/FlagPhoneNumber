@@ -409,7 +409,7 @@ open class FPNTextField: UITextField {
 
 	@objc private func didEditText() {
 		if let phoneCode = selectedCountry?.phoneCode, let number = text {
-			var cleanedPhoneNumber = clean(string: "\(phoneCode) \(number)")
+			var cleanedPhoneNumber = clean(string: "\(phoneCode)\(number)")
 
 			if let validPhoneNumber = getValidNumber(phoneNumber: cleanedPhoneNumber) {
 				nbPhoneNumber = validPhoneNumber
@@ -453,7 +453,7 @@ open class FPNTextField: UITextField {
 
 		flagButton.setImage(selectedCountry?.flag, for: .normal)
 
-        if let phoneCode = selectedCountry?.phoneCode.trimmingCharacters(in: .whitespaces) {
+		if let phoneCode = selectedCountry?.phoneCode {
 			phoneCodeTextField.text = phoneCode
 		}
 
@@ -526,7 +526,7 @@ open class FPNTextField: UITextField {
 				let example = try phoneUtil.getExampleNumber(countryCode.rawValue)
 				let phoneNumber = "+\(example.countryCode.stringValue)\(example.nationalNumber.stringValue)"
 
-				if let inputString = formatter?.inputString(phoneNumber) {
+                if let inputString = formatter?.inputString(phoneNumber)?.trimmingCharacters(in: .whitespaces) {
 					placeholder = remove(dialCode: "+\(example.countryCode.stringValue)", in: inputString)
                     
 				} else {
