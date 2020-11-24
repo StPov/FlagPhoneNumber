@@ -453,7 +453,7 @@ open class FPNTextField: UITextField {
 
 		flagButton.setImage(selectedCountry?.flag, for: .normal)
 
-		if let phoneCode = selectedCountry?.phoneCode {
+        if let phoneCode = selectedCountry?.phoneCode.trimmingCharacters(in: .whitespaces) {
 			phoneCodeTextField.text = phoneCode
 		}
 
@@ -528,6 +528,7 @@ open class FPNTextField: UITextField {
 
 				if let inputString = formatter?.inputString(phoneNumber) {
 					placeholder = remove(dialCode: "+\(example.countryCode.stringValue)", in: inputString)
+                    
 				} else {
 					placeholder = nil
 				}
