@@ -411,26 +411,26 @@ open class FPNTextField: UITextField {
 		if let phoneCode = selectedCountry?.phoneCode, let number = text {
 			var cleanedPhoneNumber = clean(string: "\(phoneCode)\(number)")
 
-            text = "\(phoneCode)\(number)"
-//			if let validPhoneNumber = getValidNumber(phoneNumber: cleanedPhoneNumber) {
-//				nbPhoneNumber = validPhoneNumber
-//
-//				cleanedPhoneNumber = "+\(validPhoneNumber.countryCode.stringValue)\(validPhoneNumber.nationalNumber.stringValue)"
-//
+			if let validPhoneNumber = getValidNumber(phoneNumber: cleanedPhoneNumber) {
+				nbPhoneNumber = validPhoneNumber
+
+				cleanedPhoneNumber = "+\(validPhoneNumber.countryCode.stringValue)\(validPhoneNumber.nationalNumber.stringValue)"
+
+                text = cleanedPhoneNumber
 //				if let inputString = formatter?.inputString(cleanedPhoneNumber) {
 //					text = remove(dialCode: phoneCode, in: inputString)
 //				}
 //				(delegate as? FPNTextFieldDelegate)?.fpnDidValidatePhoneNumber(textField: self, isValid: true)
-//			} else {
-//				nbPhoneNumber = nil
-//
-//				if let dialCode = selectedCountry?.phoneCode {
-//					if let inputString = formatter?.inputString(cleanedPhoneNumber) {
-//						text = remove(dialCode: dialCode, in: inputString)
-//					}
-//				}
-//				(delegate as? FPNTextFieldDelegate)?.fpnDidValidatePhoneNumber(textField: self, isValid: false)
-//			}
+			} else {
+				nbPhoneNumber = nil
+
+				if let dialCode = selectedCountry?.phoneCode {
+					if let inputString = formatter?.inputString(cleanedPhoneNumber) {
+						text = remove(dialCode: dialCode, in: inputString)
+					}
+				}
+				(delegate as? FPNTextFieldDelegate)?.fpnDidValidatePhoneNumber(textField: self, isValid: false)
+			}
 		}
 	}
 
