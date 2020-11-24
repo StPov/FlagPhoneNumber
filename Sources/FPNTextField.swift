@@ -331,11 +331,11 @@ open class FPNTextField: UITextField {
 		let cleanedPhoneNumber: String = clean(string: phoneNumber)
 
 		if let validPhoneNumber = getValidNumber(phoneNumber: cleanedPhoneNumber) {
-			if validPhoneNumber.italianLeadingZero {
-				text = "0\(validPhoneNumber.nationalNumber.stringValue)"
-			} else {
+//			if validPhoneNumber.italianLeadingZero {
+//				text = "0\(validPhoneNumber.nationalNumber.stringValue)"
+//			} else {
 				text = validPhoneNumber.nationalNumber.stringValue
-			}
+//			}
 			setFlag(countryCode: FPNCountryCode(rawValue: phoneUtil.getRegionCode(for: validPhoneNumber))!)
 		}
 	}
