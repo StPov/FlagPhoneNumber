@@ -330,11 +330,12 @@ open class FPNTextField: UITextField {
 	@objc open func set(phoneNumber: String) {
 		let cleanedPhoneNumber: String = clean(string: phoneNumber)
 
+        text = cleanedPhoneNumber
 		if let validPhoneNumber = getValidNumber(phoneNumber: cleanedPhoneNumber) {
 //			if validPhoneNumber.italianLeadingZero {
 //				text = "0\(validPhoneNumber.nationalNumber.stringValue)"
 //			} else {
-				text = validPhoneNumber.nationalNumber.stringValue
+//				text = validPhoneNumber.nationalNumber.stringValue
 //			}
 			setFlag(countryCode: FPNCountryCode(rawValue: phoneUtil.getRegionCode(for: validPhoneNumber))!)
 		}
@@ -416,9 +417,9 @@ open class FPNTextField: UITextField {
 
 				cleanedPhoneNumber = "+\(validPhoneNumber.countryCode.stringValue)\(validPhoneNumber.nationalNumber.stringValue)"
 
-//				if let inputString = formatter?.inputString(cleanedPhoneNumber) {
-//					text = remove(dialCode: phoneCode, in: inputString)
-//				}
+				if let inputString = formatter?.inputString(cleanedPhoneNumber) {
+					text = remove(dialCode: phoneCode, in: inputString)
+				}
 				(delegate as? FPNTextFieldDelegate)?.fpnDidValidatePhoneNumber(textField: self, isValid: true)
 			} else {
 				nbPhoneNumber = nil
