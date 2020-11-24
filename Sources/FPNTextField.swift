@@ -132,6 +132,7 @@ open class FPNTextField: UITextField {
 	private func setupLeftView() {
 		leftView = UIView()
 		leftViewMode = .always
+        leftView?.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
 		if #available(iOS 9.0, *) {
 			phoneCodeTextField.semanticContentAttribute = .forceLeftToRight
 		} else {
@@ -142,9 +143,8 @@ open class FPNTextField: UITextField {
         leftView?.addSubview(arrowImageView)
         arrowImageView.backgroundColor = .red
 		leftView?.addSubview(phoneCodeTextField)
-        phoneCodeTextField.backgroundColor = .yellow
         leftView?.addSubview(separatorView)
-        separatorView.backgroundColor = .blue
+        separatorView.backgroundColor = .lightGray
 
         flagButton.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 9.0, *) {
@@ -176,12 +176,12 @@ open class FPNTextField: UITextField {
             // Fallback on earlier versions
         }
         if #available(iOS 9.0, *) {
-            arrowImageView.topAnchor.constraint(equalTo: leftView!.topAnchor, constant: 5).isActive = true
+            arrowImageView.heightAnchor.constraint(equalToConstant: leftView!.frame.height).isActive = true
         } else {
             // Fallback on earlier versions
         }
         if #available(iOS 9.0, *) {
-            arrowImageView.bottomAnchor.constraint(equalTo: leftView!.bottomAnchor, constant: 5).isActive = true
+            arrowImageView.centerYAnchor.constraint(equalTo: leftView!.centerYAnchor).isActive = true
         } else {
             // Fallback on earlier versions
         }
