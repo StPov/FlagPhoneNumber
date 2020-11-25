@@ -29,12 +29,13 @@ open class FPNTextField: UITextField {
 
 	/// The size of the leftView
 	private var leftViewSize: CGSize {
-        var width: CGFloat = 0
-        if #available(iOS 13.0, *) {
-            width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!) + 13
-        } else {
-            width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!) + 10
-        }
+//        var width: CGFloat = 0
+//        if #available(iOS 13.0, *) {
+//            let width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!) + 13
+//        } else {
+//            let width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!) + 13
+//        }
+		let width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!) + 13
 		let height = bounds.height
 
 		return CGSize(width: width, height: height)
@@ -221,7 +222,8 @@ open class FPNTextField: UITextField {
         
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 9.0, *) {
-            separatorView.leadingAnchor.constraint(equalTo: phoneCodeTextField.trailingAnchor).isActive = true
+//            separatorView.leadingAnchor.constraint(equalTo: phoneCodeTextField.trailingAnchor).isActive = true
+            separatorView.leadingAnchor.constraint(equalTo: leftView!.trailingAnchor).isActive = true
         } else {
             // Fallback on earlier versions
         }
